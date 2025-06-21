@@ -35,11 +35,11 @@ section{
     padding: 0 80px;
     margin: auto;
 }
-.about, .services, .skills, .teams, .contact, footer{
+.about, .Travel, .youtube, .skills, .teams, .contact, footer{
     font-family: 'Poppins', sans-serif;
 }
 .about .about-content,
-.services .serv-content,
+.youtube,
 .skills .skills-content,
 .contact .contact-content{
     display: flex;
@@ -215,7 +215,7 @@ section .title::after{
 
 /* about section styling */
 .about .title::after{
-    content: "who i am";
+    content: "Who I Am";
 }
 .about .about-content .left{
     width: 45%;
@@ -255,52 +255,6 @@ section .title::after{
 .about .about-content .right a:hover{
     color: crimson;
     background: none;
-}
-
-/* services section styling */
-.services, .teams{
-    color:#fff;
-    background: #111;
-}
-.services .title::before,
-.teams .title::before{
-    background: #fff;
-}
-.services .title::after,
-.teams .title::after{
-    background: #111;
-    content: "what i provide";
-}
-.services .serv-content .card{
-    width: calc(33% - 20px);
-    background: #222;
-    text-align: center;
-    border-radius: 6px;
-    padding: 35px 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.services .serv-content .card:hover{
-    background: crimson;
-}
-.services .serv-content .card .box{
-    transition: all 0.3s ease;
-}
-.services .serv-content .card:hover .box{
-    transform: scale(1.05);
-}
-.services .serv-content .card i{
-    font-size: 50px;
-    color: crimson;
-    transition: color 0.3s ease;
-}
-.services .serv-content .card:hover i{
-    color: #fff;
-}
-.services .serv-content .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
 }
 
 /* skills section styling */
@@ -619,7 +573,7 @@ footer span a:hover{
     .about .about-content .right{
         flex: 100%;
     }
-    .services .serv-content .card{
+    .Travel .Travel-content .card{
         width: calc(50% - 10px);
         margin-bottom: 20px;
     }
@@ -643,7 +597,7 @@ footer span a:hover{
     .home .home-content a{
         font-size: 20px;
     }
-    .services .serv-content .card{
+    .Travel .Travel-content .card{
         width: 100%;
     }
 }
@@ -677,4 +631,221 @@ footer span a:hover{
         font-size: 23px;
         line-height: 38px;
     }
+}
+
+/* YouTube Section Styling */
+.youtube {
+  background-color: #fff; /* white background */
+  color: black;           /* black font color */
+  padding: 80px 0;
+  text-align: center;
+}
+
+.youtube .title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  color: black; /* ensure black text */
+}
+
+.youtube .title::before {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 3px;
+  background: crimson; /* keep this small crimson underline for style */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+/* Container for the videos */
+.youtube .iframes-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+/* Make iframes responsive and clean */
+.youtube .iframes-container iframe {
+  flex: 1 1 300px;      /* flexible width */
+  max-width: 480px;
+  height: 270px;        /* 16:9 aspect ratio */
+  border-radius: 8px;
+  border: none;         /* clean, no border */
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.youtube .iframes-container iframe:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments for smaller screens */
+@media screen and (max-width: 600px) {
+  .youtube .iframes-container iframe {
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: 200px;
+  }
+
+  .youtube .title {
+    font-size: 2rem;
+  }
+}
+
+
+/* Link to full channel styling */
+.youtube a {
+  display: inline-block;
+  padding: 12px 30px;
+  background: crimson;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  box-shadow: 0 0 10px crimson;
+  transition: background 0.3s ease;
+}
+
+.youtube a:hover {
+  background: #a30000;
+}
+
+/* Travel Section Styling */
+.travel {
+  background-color: #fff;
+  padding: 80px 20px;
+  color: #222;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.travel .title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+  color: #000;
+}
+
+.travel .title::after {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 4px;
+  background: crimson;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.travel .subtitle {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 50px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+}
+
+/* Travel cards container */
+.travel-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Individual travel card */
+.travel-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 250px;
+  padding: 20px;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.travel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(220, 20, 60, 0.3);
+}
+
+.travel-card .flag {
+  width: 48px;
+  height: auto;
+  border-radius: 6px;
+  flex-shrink: 0;
+  border: 1px solid #ddd;
+}
+
+.travel-card .travel-info h3 {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  color: crimson;
+}
+
+.travel-card .travel-info p {
+  margin: 0;
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+/* Special styling for "Next" card */
+.travel-card.next-destination {
+  background: #fff0f1;
+  border: 2px dashed crimson;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.travel-card.next-destination .flag {
+  filter: grayscale(100%);
+  opacity: 0.6;
+  width: 40px;
+}
+
+.travel-card.next-destination .travel-info h3 {
+  color: #a30000;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .travel-cards {
+    gap: 20px;
+  }
+  .travel-card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .travel-card {
+    width: 100%;
+  }
+  .travel .title {
+    font-size: 2rem;
+  }
+  .travel .subtitle {
+    font-size: 1rem;
+  }
 }
