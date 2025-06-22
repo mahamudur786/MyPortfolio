@@ -126,7 +126,7 @@ section .title::after{
     color: #fff;
 }
 
-/* menu btn styling */
+/* menu btn styling -----------------------------------------------------------------------------------------> */
 .menu-btn{
     color: #fff;
     font-size: 23px;
@@ -162,7 +162,7 @@ section .title::after{
 }
 
 
-/* home section styling */
+/* home section styling -----------------------------------------------------------------------------------------> */
 .home{
     display: flex;
     background: url("profile-10.png") no-repeat center;
@@ -213,7 +213,7 @@ section .title::after{
     background: none;
 }
 
-/* about section styling */
+/* about section styling -----------------------------------------------------------------------------------------> */
 .about .title::after{
     content: "Who I Am";
 }
@@ -257,145 +257,125 @@ section .title::after{
     background: none;
 }
 
-/* skills section styling */
+/* skills section styling-----------------------------------------------------------------------------------------> */
 
-.skills .title::after{
-    content: "what i know";
+.skills-education .title::after {
+  content: "Data | Code | Growth";
 }
-.skills .skills-content .column{
-    width: calc(50% - 30px);
+
+.skills-education-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: space-between;
 }
-.skills .skills-content .left .text{
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 10px;
+
+.skills-education .column {
+  width: calc(50% - 20px);
 }
-.skills .skills-content .left p{
-    text-align: justify;
+
+.skills-education .text {
+  font-size: 22px;
+  font-weight: 600;
+  color: crimson;
+  margin-bottom: 15px;
 }
-.skills .skills-content .left a{
-    display: inline-block;
-    background: crimson;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 16px;
-    margin-top: 20px;
-    border-radius: 6px;
-    border: 2px solid crimson;
-    transition: all 0.3s ease;
+
+.skills-education .column.left p {
+  text-align: justify;
+  font-size: 15px;
+  margin-bottom: 25px;
 }
-.skills .skills-content .left a:hover{
-    color: crimson;
-    background: none;
+
+.skills-education .bars {
+  margin-bottom: 20px;
 }
-.skills .skills-content .right .bars{
-    margin-bottom: 15px;
+
+.skills-education .info {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 6px;
 }
-.skills .skills-content .right .info{
-    display: flex;
-    margin-bottom: 5px;
-    align-items: center;
-    justify-content: space-between;
+
+.skills-education .line {
+  height: 6px;
+  width: 100%;
+  background: #e0e0e0;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
 }
-.skills .skills-content .right span{
-    font-weight: 500;
-    font-size: 18px;
+
+.skills-education .line::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: crimson;
+  border-radius: 4px;
 }
-.skills .skills-content .right .line{
-    height: 5px;
+
+/* Individual skill widths */
+.line.python::before { width: 95%; }
+.line.sql::before { width: 90%; }
+.line.spark::before { width: 85%; }
+.line.adf::before { width: 90%; }
+.line.htmlcss::before { width: 90%; }
+.line.content::before { width: 85%; }
+
+/* ===== Education Timeline ===== */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.timeline-item {
+  border-left: 4px solid crimson;
+  padding-left: 20px;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: crimson;
+  border-radius: 50%;
+  position: absolute;
+  left: -8px;
+  top: 5px;
+}
+
+.timeline-item h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.timeline-item p {
+  font-size: 15px;
+  margin: 2px 0 5px;
+}
+
+.timeline-item .time,
+.timeline-item .place {
+  font-size: 13px;
+  color: #555;
+  display: block;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .skills-education .column {
     width: 100%;
-    background: lightgrey;
-    position: relative;
-}
-.skills .skills-content .right .line::before{
-    content: "";
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    background: crimson;
-}
-.skills-content .right .html::before{
-    width: 90%;
-}
-.skills-content .right .css::before{
-    width: 60%;
-}
-.skills-content .right .js::before{
-    width: 80%;
-}
-.skills-content .right .php::before{
-    width: 50%;
-}
-.skills-content .right .mysql::before{
-    width: 70%;
+  }
 }
 
-/* teams section styling */
-.teams .title::after{
-    content: "who with me";
-}
-.teams .carousel .card{
-    background: #222;
-    border-radius: 6px;
-    padding: 25px 35px;
-    text-align: center;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-.teams .carousel .card:hover{
-    background: crimson;
-}
-.teams .carousel .card .box{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-.teams .carousel .card:hover .box{
-    transform: scale(1.05);
-}
-.teams .carousel .card .text{
-    font-size: 25px;
-    font-weight: 500;
-    margin: 10px 0 7px 0;
-}
-.teams .carousel .card img{
-    height: 150px;
-    width: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid crimson;
-    transition: all 0.3s ease;
-}
-.teams .carousel .card:hover img{
-    border-color: #fff;
-}
-.owl-dots{
-    text-align: center;
-    margin-top: 20px;
-}
-.owl-dot{
-    height: 13px;
-    width: 13px;
-    margin: 0 5px;
-    outline: none!important;
-    border-radius: 50%;
-    border: 2px solid crimson!important;
-    transition: all 0.3s ease;
-}
-.owl-dot.active{
-    width: 35px;
-    border-radius: 14px;
-}
-.owl-dot.active,
-.owl-dot:hover{
-    background: crimson!important;
-}
-
-/* contact section styling */
+/* contact section styling-----------------------------------------------------------------------------------------> */
 .contact .title::after{
     content: "get in touch";
 }
@@ -849,3 +829,6 @@ footer span a:hover{
     font-size: 1rem;
   }
 }
+
+
+/*--------------------*/
