@@ -109,6 +109,12 @@ section .title::after{
     background: crimson;
     box-shadow: 0 2px 15px rgba(220, 20, 60, 0.3);
 }
+.navbar-colored.sticky .menu li a:hover{
+    color: #fff;
+}
+.navbar-colored.sticky .logo a span{
+    color: #fff;
+}
 .navbar .max-width{
     display: flex;
     align-items: center;
