@@ -22,15 +22,18 @@ $(document).ready(function(){
         $('html').css("scrollBehavior", "auto");
     });
 
-    $('.navbar .menu li a').click(function(){
-        // applying again smooth scroll on menu items click
-        $('html').css("scrollBehavior", "smooth");
-    });
-
-    // toggle menu/navbar script
-    $('.menu-btn').click(function(){
+    // toggle menu/navbar script (hamburger button only - not menu items)
+    $('.navbar > .max-width > .menu-btn').click(function(){
         $('.navbar .menu').toggleClass("active");
-        $('.menu-btn i').toggleClass("active");
+        $(this).find('i').toggleClass("active");
+    });
+    
+    // Close mobile menu when clicking on a menu item
+    $('.navbar .menu li a').click(function(){
+        if ($(window).width() < 947) {
+            $('.navbar .menu').removeClass("active");
+            $('.menu-btn i').removeClass("active");
+        }
     });
 
     // typing text animation script
@@ -41,45 +44,51 @@ $(document).ready(function(){
         loop: true
     });
 
-    var typed = new Typed(".typing-2", {
+    var typed2 = new Typed(".typing-2", {
         strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
         typeSpeed: 100,
         backSpeed: 60,
         loop: true
     });
 
-    // owl carousel script
-    $('.carousel').owlCarousel({
-        margin: 20,
-        loop: true,
-        autoplayTimeOut: 2000,
-        autoplayHoverPause: true,
-        responsive: {
-            0:{
-                items: 1,
-                nav: false
-            },
-            600:{
-                items: 2,
-                nav: false
-            },
-            1000:{
-                items: 3,
-                nav: false
-            }
+    // Smooth scroll for all anchor links (using jQuery for consistency)
+    $('a[href^="#"]').on('click', function(e) {
+        var target = $(this.getAttribute('href'));
+        if (target.length) {
+            e.preventDefault();
+            $('html, body').animate({
+                scrollTop: target.offset().top - 80
+            }, 800);
         }
     });
-	  
-	// Smooth scroll for all anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth'
-        });
-      }
+
+    // Contact form submission handler
+    $('#contactForm').on('submit', function(e) {
+        e.preventDefault();
+        
+        var name = $('.fullname').val().trim();
+        var email = $('.email-input').val().trim();
+        var subject = $('.subject').val().trim();
+        var message = $('.message').val().trim();
+        
+        if (!name || !email || !subject || !message) {
+            alert('Please fill in all fields.');
+            return false;
+        }
+        
+        // Create mailto link as fallback (since no backend)
+        var mailtoLink = 'mailto:mahamudu786@gmail.com?subject=' + 
+                        encodeURIComponent(subject) + 
+                        '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        
+        window.location.href = mailtoLink;
+        
+        // Optional: Show success message
+        alert('Opening your email client to send the message...');
+        
+        // Reset form
+        this.reset();
+        
+        return false;
     });
-	});
 });
