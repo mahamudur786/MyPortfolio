@@ -35,7 +35,7 @@ section{
     padding: 0 80px;
     margin: auto;
 }
-.about, .Travel, .youtube, .skills, .teams, .contact, footer{
+.about, .travel, .youtube, .skills, .teams, .contact, footer{
     font-family: 'Poppins', sans-serif;
 }
 .about .about-content,
@@ -553,10 +553,6 @@ footer span a:hover{
     .about .about-content .right{
         flex: 100%;
     }
-    .Travel .Travel-content .card{
-        width: calc(50% - 10px);
-        margin-bottom: 20px;
-    }
     .skills .skills-content .column,
     .contact .contact-content .column{
         width: 100%;
@@ -576,9 +572,6 @@ footer span a:hover{
     }
     .home .home-content a{
         font-size: 20px;
-    }
-    .Travel .Travel-content .card{
-        width: 100%;
     }
 }
 
