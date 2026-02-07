@@ -77,6 +77,8 @@ section .title::before{
     height: 3px;
     background: #111;
     transform: translateX(-50%);
+    /* decorative only (don't block taps/selection) */
+    pointer-events: none;
 }
 section .title::after{
     position: absolute;
@@ -87,6 +89,8 @@ section .title::after{
     padding: 0 5px;
     background: #fff;
     transform: translateX(-50%);
+    /* decorative only (don't block taps/selection) */
+    pointer-events: none;
 }
 
 /* navbar styling */
@@ -316,10 +320,24 @@ section .title::after{
 
 .skills-education .title::after {
   content: "Data | Code | Growth";
+  /* Prevent wrapping on small screens (wrapping grows upward and can overlap the title text) */
+  white-space: nowrap;
+  line-height: 1.2;
 }
 
 .skills-education{
   font-family: 'Poppins', sans-serif;
+}
+
+@media screen and (max-width: 480px) {
+  .skills-education .title {
+    /* Extra room for the subtitle pseudo-element on mobile */
+    padding-bottom: 34px;
+  }
+  .skills-education .title::after {
+    font-size: 16px;
+    bottom: -12px;
+  }
 }
 
 .skills-education .skills-wrap{
