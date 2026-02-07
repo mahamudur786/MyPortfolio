@@ -7,6 +7,16 @@
     box-sizing: border-box;
     text-decoration: none;
 }
+html,
+body{
+    width: 100%;
+    overflow-x: hidden;
+}
+img{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
 html{
     scroll-behavior: smooth;
 }
@@ -586,6 +596,11 @@ footer span a:hover{
 }
 
 @media (max-width: 690px) {
+    .home{
+        background-attachment: scroll;
+        background-position: center 15%;
+        min-height: 100svh;
+    }
     .max-width{
         padding: 0 23px;
     }
@@ -601,6 +616,9 @@ footer span a:hover{
 }
 
 @media (max-width: 500px) {
+    .home{
+        background-position: center 10%;
+    }
     .home .home-content .text-2{
         font-size: 50px;
     }
