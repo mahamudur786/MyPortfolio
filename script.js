@@ -14,11 +14,16 @@ $(document).ready(function(){
     }
 
     $(window).scroll(updateNavbarAndScrollBtn);
+    // Set correct state on initial load
+    updateNavbarAndScrollBtn();
 
-    // Re-apply navbar/scroll state when page is restored from back-forward cache (e.g. Blog → Home)
+    // Re-apply navbar/scroll state when page is restored from back-forward cache (back button)
     window.addEventListener('pageshow', function(event){
         if(event.persisted){
             updateNavbarAndScrollBtn();
+            // Ensure mobile menu isn't stuck open after returning
+            $('.navbar .menu').removeClass("active");
+            $('.menu-btn i').removeClass("active");
         }
     });
 
@@ -43,20 +48,25 @@ $(document).ready(function(){
         }
     });
 
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-
-    var typed2 = new Typed(".typing-2", {
-        strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
+    // typing text animation script (only if Typed is loaded and targets exist)
+    if (window.Typed) {
+        if ($(".typing").length) {
+            new Typed(".typing", {
+                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
+        }
+        if ($(".typing-2").length) {
+            new Typed(".typing-2", {
+                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
+        }
+    }
 
     // Smooth scroll for all anchor links (using jQuery for consistency)
     $('a[href^="#"]').on('click', function(e) {
