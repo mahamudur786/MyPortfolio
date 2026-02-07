@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bhairus | From Big Data to Big Adventures</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="preload" as="image" href="Bhairus%20Main%20Page.jpg" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
 	<meta name="description" content="Bhairus - Travel vlogs, tech insights, and educational content by Mahamudur Rahaman, a data engineer and creator.">
 	<meta name="keywords" content="Bhairus, Mahamudur Rahaman, travel vlogs, data engineer, finance, education, technology, YouTube, bhairus.com">
 	<meta name="author" content="Mahamudur Rahaman">
@@ -37,14 +39,13 @@
     </div>
     <nav class="navbar">
         <div class="max-width">
-            <div class="logo"><a href="#">Bhai<span>Rus.</span></a></div>
+            <div class="logo"><a href="/">Bhai<span>Rus.</span></a></div>
             <ul class="menu">
                 <li><a href="#home" class="menu-btn">Home</a></li> 
                 <li><a href="#about" class="menu-btn">About</a></li>
-                <li><a href="Blogs/" class="menu-btn">Blogs</a></li>
-                <li><a href="#travel" class="menu-btn">Travel</a></li>
-				<li><a href="#youtube" class="menu-btn">YouTube</a></li>
-				<li><a href="#skills" class="menu-btn">Education</a></li>
+				<li><a href="Projects/" class="menu-btn">Projects</a></li>
+                <li><a href="Blogs/" class="menu-btn">Blog</a></li>
+                <li><a href="Resources/" class="menu-btn">Resources</a></li>
                 <li><a href="#contact" class="menu-btn">Contact</a></li>
             </ul>
             <div class="menu-btn">
@@ -73,7 +74,7 @@
             <h2 class="title">Welcome to Bhairus – where curiosity meets creation 💘</h2>
             <div class="about-content">
                 <div class="column left">
-                    <img src="Bhairus.jpg" alt="Mahamudur Rahaman - Data Engineer and Travel Content Creator" loading="lazy">
+                    <img src="Bhairus.jpg" alt="Mahamudur Rahaman - Data Engineer and Travel Content Creator" loading="lazy" width="400" height="400">
                 </div>
                 <div class="column right">
                     <div class="text">I'm Mahamudur and I'm a <span class="typing-2"></span></div>
@@ -186,75 +187,45 @@ This platform brings together everything I love – from engineering powerful da
   </div>
 </section>
 
-<!-- skills and education section start -->
-
+<!-- skills section start -->
 <section class="skills-education" id="skills">
   <div class="max-width">
-    <h2 class="title">Skills & Education</h2>
-    <div class="skills-education-content">
-      <!-- Skills Column -->
-      <div class="column left">
-        <div class="text">My Skills</div>
-        <p>
-          I’m a professional Data Engineer with 4+ years of experience working with Apache Spark, Azure Data Factory, Hive, SQL, and Python. 
-          I'm also the creator of the Bhairus platform—simplifying tech, travel, and finance through creative storytelling.
-        </p>
+    <h2 class="title">My Skills</h2>
 
-        <div class="bars">
-          <div class="info"><span>Python (Data/Backend)</span><span>95%</span></div>
-          <div class="line python"></div>
-        </div>
+    <div class="skills-wrap">
+      <p class="skills-intro">
+        I’m a Data Engineer with 4.5+ years of hands-on experience designing and maintaining scalable data pipelines and cloud-based data systems.
+        My work focuses on building reliable ingestion, transformation, and analytics layers using modern data engineering tools.
+        Alongside engineering, I document my learning and share technical insights through writing and video content.
+      </p>
 
-        <div class="bars">
-          <div class="info"><span>SQL & NoSQL (MongoDB, Hive)</span><span>90%</span></div>
-          <div class="line sql"></div>
-        </div>
-
-        <div class="bars">
-          <div class="info"><span>Apache Spark / Databricks</span><span>85%</span></div>
-          <div class="line spark"></div>
-        </div>
-
-        <div class="bars">
-          <div class="info"><span>Azure Data Factory</span><span>90%</span></div>
-          <div class="line adf"></div>
-        </div>
-
-        <div class="bars">
-          <div class="info"><span>HTML / CSS / Web Dev</span><span>90%</span></div>
-          <div class="line htmlcss"></div>
-        </div>
-
-        <div class="bars">
-          <div class="info"><span>Content Creation (YouTube / SEO)</span><span>85%</span></div>
-          <div class="line content"></div>
+      <div class="skills-group">
+        <h3>Core Data Engineering</h3>
+        <div class="skills-lines">
+          <p class="skill-line"><strong>Python</strong> – Data processing, ETL/ELT pipelines, backend scripting</p>
+          <p class="skill-line"><strong>SQL</strong> – Analytical querying, data modeling, performance tuning</p>
+          <p class="skill-line"><strong>Apache Spark / Databricks</strong> – Distributed processing, batch workloads</p>
+          <p class="skill-line"><strong>Azure Data Factory</strong> – Orchestration, scheduling, cloud pipelines</p>
+          <p class="skill-line"><strong>Hive / Data Warehousing</strong> – Schema design, partitioning, large-scale queries</p>
         </div>
       </div>
 
-      <!-- Education Column -->
-      <div class="column right">
-        <div class="text">My Education</div>
-        <div class="timeline">
-          <div class="timeline-item">
-            <h4>Bachelor of Engineering (BE)</h4>
-            <p>Metallurgical engineering</p>
-            <span class="time">2017 – 2021</span>
-            <span class="place">Jadavpur University</span>
-          </div>
+      <div class="skills-group">
+        <h3>Supporting & Platform Skills</h3>
+        <div class="skills-lines">
+          <p class="skill-line"><strong>Cloud Platforms</strong> – Azure (primary), AWS (S3, EC2, Glue, Athena)</p>
+          <p class="skill-line"><strong>Streaming & Messaging</strong> – Apache Kafka (producers, consumers, pipelines)</p>
+          <p class="skill-line"><strong>Linux / Unix</strong> – Shell scripting, environment management</p>
+          <p class="skill-line"><strong>Web Fundamentals</strong> – HTML, CSS, basic frontend performance concepts</p>
+        </div>
+      </div>
 
-          <div class="timeline-item">
-            <h4>12th Grade – Higher Secondary</h4>
-            <p>Science Stream</p>
-            <span class="time">2014 – 2016</span>
-            <span class="place">WBCHSE, West Bengal</span>
-          </div>
-
-          <div class="timeline-item">
-            <h4>Self-Learning & Certifications</h4>
-            <p>Big Data, Cloud, and Data Engineering Tools</p>
-            <span class="time">2021 – Present</span>
-            <span class="place">YouTube, Coursera, Azure, Udemy</span>
-          </div>
+      <div class="skills-group">
+        <h3>Knowledge Sharing & Content</h3>
+        <div class="skills-lines">
+          <p class="skill-line">Technical blogging and documentation</p>
+          <p class="skill-line">YouTube content focused on tech, learning, and career growth</p>
+          <p class="skill-line">Explaining complex systems in simple, practical terms</p>
         </div>
       </div>
     </div>
@@ -357,6 +328,8 @@ This platform brings together everything I love – from engineering powerful da
     }
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

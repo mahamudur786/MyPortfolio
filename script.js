@@ -1,17 +1,29 @@
 $(document).ready(function(){
-    $(window).scroll(function(){
-        // sticky navbar on scroll script
-        if(this.scrollY > 20){
+    function updateNavbarAndScrollBtn(){
+        var scrollY = window.scrollY || window.pageYOffset;
+        if(scrollY > 20){
             $('.navbar').addClass("sticky");
         }else{
             $('.navbar').removeClass("sticky");
         }
-        
-        // scroll-up button show/hide script
-        if(this.scrollY > 500){
+        if(scrollY > 500){
             $('.scroll-up-btn').addClass("show");
         }else{
             $('.scroll-up-btn').removeClass("show");
+        }
+    }
+
+    $(window).scroll(updateNavbarAndScrollBtn);
+    // Set correct state on initial load
+    updateNavbarAndScrollBtn();
+
+    // Re-apply navbar/scroll state when page is restored from back-forward cache (back button)
+    window.addEventListener('pageshow', function(event){
+        if(event.persisted){
+            updateNavbarAndScrollBtn();
+            // Ensure mobile menu isn't stuck open after returning
+            $('.navbar .menu').removeClass("active");
+            $('.menu-btn i').removeClass("active");
         }
     });
 
@@ -36,30 +48,46 @@ $(document).ready(function(){
         }
     });
 
-    // typing text animation script
-    var typed = new Typed(".typing", {
-        strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-
-    var typed2 = new Typed(".typing-2", {
-        strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-
-    // Smooth scroll for all anchor links (using jQuery for consistency)
-    $('a[href^="#"]').on('click', function(e) {
-        var target = $(this.getAttribute('href'));
-        if (target.length) {
-            e.preventDefault();
-            $('html, body').animate({
-                scrollTop: target.offset().top - 80
-            }, 800);
+    // typing text animation script (only if Typed is loaded and targets exist)
+    if (window.Typed) {
+        if ($(".typing").length) {
+            new Typed(".typing", {
+                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
         }
+        if ($(".typing-2").length) {
+            new Typed(".typing-2", {
+                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                typeSpeed: 100,
+                backSpeed: 60,
+                loop: true
+            });
+        }
+    }
+
+    // Smooth scroll for in-page anchor links.
+    // Guard against href="#" (invalid selector: $('#') throws in jQuery 3.x).
+    $('a[href^="#"]').on('click', function(e) {
+        var href = this.getAttribute('href');
+
+        // Allow no-op anchors / placeholders to behave normally and avoid invalid selectors.
+        if (!href || href === '#' || href === '#0') {
+            return;
+        }
+
+        // Use getElementById instead of $(href) to avoid selector parsing edge cases.
+        var targetEl = document.getElementById(href.slice(1));
+        if (!targetEl) {
+            return;
+        }
+
+        e.preventDefault();
+        $('html, body').animate({
+            scrollTop: $(targetEl).offset().top - 80
+        }, 800);
     });
 
     // Contact form submission handler
