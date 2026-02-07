@@ -1,17 +1,24 @@
 $(document).ready(function(){
-    $(window).scroll(function(){
-        // sticky navbar on scroll script
-        if(this.scrollY > 20){
+    function updateNavbarAndScrollBtn(){
+        var scrollY = window.scrollY || window.pageYOffset;
+        if(scrollY > 20){
             $('.navbar').addClass("sticky");
         }else{
             $('.navbar').removeClass("sticky");
         }
-        
-        // scroll-up button show/hide script
-        if(this.scrollY > 500){
+        if(scrollY > 500){
             $('.scroll-up-btn').addClass("show");
         }else{
             $('.scroll-up-btn').removeClass("show");
+        }
+    }
+
+    $(window).scroll(updateNavbarAndScrollBtn);
+
+    // Re-apply navbar/scroll state when page is restored from back-forward cache (e.g. Blog → Home)
+    window.addEventListener('pageshow', function(event){
+        if(event.persisted){
+            updateNavbarAndScrollBtn();
         }
     });
 

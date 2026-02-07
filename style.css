@@ -98,6 +98,8 @@ section .title::after{
     padding: 30px 0;
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
+    /* Fallback so navbar stays visible after back/forward navigation (bfcache) when hero may not repaint */
+    background: rgba(11, 9, 9, 0.15);
 }
 .navbar-colored{
     background: rgba(17, 17, 17, 0.98);
