@@ -1,6 +1,29 @@
 $(document).ready(function(){
+    // Throttle helper using requestAnimationFrame
+    function rafThrottle(fn){
+        var ticking = false;
+        return function(){
+            if(!ticking){
+                window.requestAnimationFrame(function(){
+                    fn();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        };
+    }
+
+    var $progressBar = $('#scrollProgress');
+
     function updateNavbarAndScrollBtn(){
         var scrollY = window.scrollY || window.pageYOffset;
+        var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        var progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
+
+        if($progressBar.length){
+            $progressBar.css('width', progress + '%');
+        }
+
         if(scrollY > 20){
             $('.navbar').addClass("sticky");
         }else{
@@ -13,7 +36,8 @@ $(document).ready(function(){
         }
     }
 
-    $(window).scroll(updateNavbarAndScrollBtn);
+    var throttledUpdate = rafThrottle(updateNavbarAndScrollBtn);
+    $(window).on('scroll resize', throttledUpdate);
     // Set correct state on initial load
     updateNavbarAndScrollBtn();
 
@@ -27,11 +51,17 @@ $(document).ready(function(){
         }
     });
 
-    // slide-up script
-    $('.scroll-up-btn').click(function(){
+    // slide-up script (supports click and keyboard activation)
+    function scrollToTop(){
         $('html').animate({scrollTop: 0});
-        // removing smooth scroll on slide-up button click
         $('html').css("scrollBehavior", "auto");
+    }
+    $('.scroll-up-btn').on('click', scrollToTop);
+    $('.scroll-up-btn').on('keydown', function(e){
+        if(e.key === 'Enter' || e.key === ' '){
+            e.preventDefault();
+            scrollToTop();
+        }
     });
 
     // toggle menu/navbar script (hamburger button only - not menu items)
@@ -39,7 +69,7 @@ $(document).ready(function(){
         $('.navbar .menu').toggleClass("active");
         $(this).find('i').toggleClass("active");
     });
-    
+
     // Close mobile menu when clicking on a menu item
     $('.navbar .menu li a').click(function(){
         if ($(window).width() < 947) {
@@ -47,6 +77,42 @@ $(document).ready(function(){
             $('.menu-btn i').removeClass("active");
         }
     });
+
+    // Close mobile menu on Escape key
+    $(document).on('keydown', function(e){
+        if(e.key === 'Escape' && $('.navbar .menu').hasClass('active')){
+            $('.navbar .menu').removeClass('active');
+            $('.menu-btn i').removeClass('active');
+        }
+    });
+
+    // Reveal-on-scroll is handled by the inline bootstrap script in <head>
+    // (kept there so sections stay visible even if jQuery / this file fails to load).
+
+    // Highlight current section in navbar via IntersectionObserver
+    var navLinks = document.querySelectorAll('.navbar .menu li a[href^="#"]');
+    var sectionMap = {};
+    navLinks.forEach(function(link){
+        var id = link.getAttribute('href').slice(1);
+        var section = document.getElementById(id);
+        if(section){ sectionMap[id] = link; }
+    });
+    if('IntersectionObserver' in window && Object.keys(sectionMap).length){
+        var sectionObserver = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                var link = sectionMap[entry.target.id];
+                if(!link) return;
+                if(entry.isIntersecting){
+                    navLinks.forEach(function(l){ l.classList.remove('active'); });
+                    link.classList.add('active');
+                }
+            });
+        }, { threshold: 0.35, rootMargin: '-80px 0px -45% 0px' });
+        Object.keys(sectionMap).forEach(function(id){
+            var s = document.getElementById(id);
+            if(s) sectionObserver.observe(s);
+        });
+    }
 
     // typing text animation script (only if Typed is loaded and targets exist)
     if (window.Typed) {
@@ -93,30 +159,41 @@ $(document).ready(function(){
     // Contact form submission handler
     $('#contactForm').on('submit', function(e) {
         e.preventDefault();
-        
+
+        var $form = $(this);
+        var $btn = $form.find('button[type="submit"]');
+        var originalText = $btn.text();
+
         var name = $('.fullname').val().trim();
         var email = $('.email-input').val().trim();
         var subject = $('.subject').val().trim();
         var message = $('.message').val().trim();
-        
+
         if (!name || !email || !subject || !message) {
             alert('Please fill in all fields.');
             return false;
         }
-        
-        // Create mailto link as fallback (since no backend)
-        var mailtoLink = 'mailto:mahamudu786@gmail.com?subject=' + 
-                        encodeURIComponent(subject) + 
+
+        // Simple email format check
+        var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        if(!emailOk){
+            alert('Please enter a valid email address.');
+            return false;
+        }
+
+        $btn.prop('disabled', true).text('Opening email...');
+
+        var mailtoLink = 'mailto:mahamudu786@gmail.com?subject=' +
+                        encodeURIComponent(subject) +
                         '&body=' + encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
-        
+
         window.location.href = mailtoLink;
-        
-        // Optional: Show success message
-        alert('Opening your email client to send the message...');
-        
-        // Reset form
-        this.reset();
-        
+
+        setTimeout(function(){
+            $btn.prop('disabled', false).text(originalText);
+            $form[0].reset();
+        }, 1200);
+
         return false;
     });
 });

@@ -34,17 +34,58 @@
 	
 	<!-- Canonical URL -->
 	<link rel="canonical" href="https://bhairus.com/">
+
+	<!-- Reveal-on-scroll bootstrap (inline, no external deps).
+	     Adds `reveal-ready` to <html> only if this script actually runs, so
+	     sections stay visible if JS is blocked. Has a 4s failsafe that forces
+	     all .reveal sections visible regardless of observer state. -->
+	<script>
+	(function(){
+	  document.documentElement.classList.add('reveal-ready');
+	  function showAll(els){
+	    for(var i=0; i<els.length; i++){ els[i].classList.add('visible'); }
+	  }
+	  function init(){
+	    var els = document.querySelectorAll('.reveal');
+	    if(!els.length) return;
+	    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	    if(reduced || !('IntersectionObserver' in window)){
+	      showAll(els);
+	      return;
+	    }
+	    var obs = new IntersectionObserver(function(entries){
+	      for(var n=0; n<entries.length; n++){
+	        if(entries[n].isIntersecting){
+	          entries[n].target.classList.add('visible');
+	          obs.unobserve(entries[n].target);
+	        }
+	      }
+	    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+	    for(var j=0; j<els.length; j++){ obs.observe(els[j]); }
+	    /* Failsafe: nothing should ever remain invisible */
+	    setTimeout(function(){ showAll(els); }, 4000);
+	  }
+	  if(document.readyState === 'loading'){
+	    document.addEventListener('DOMContentLoaded', init);
+	  } else {
+	    init();
+	  }
+	})();
+	</script>
 </head>
 <body>
-    <div class="scroll-up-btn">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+    <div class="scroll-up-btn" role="button" tabindex="0" aria-label="Scroll to top">
         <i class="fas fa-angle-up"></i>
     </div>
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Primary">
         <div class="max-width">
             <div class="logo"><a href="/">Bhai<span>Rus.</span></a></div>
             <ul class="menu">
                 <li><a href="#home" class="menu-btn">Home</a></li> 
                 <li><a href="#about" class="menu-btn">About</a></li>
+                <li><a href="#onede" class="menu-btn">OneDE</a></li>
 				<li><a href="Projects/" class="menu-btn">Projects</a></li>
                 <li><a href="Blogs/" class="menu-btn">Blog</a></li>
                 <li><a href="Resources/" class="menu-btn">Resources</a></li>
@@ -56,6 +97,7 @@
         </div>
     </nav>
 
+    <main id="main">
     <!-- home section start -->
     <section class="home" id="home">
       <div class="max-width">
@@ -64,14 +106,68 @@
                 <div class="text-1">Hello, my name is</div>
                 <div class="text-2">Mahamudur Rahaman</div>
                 <div class="text-3">And I'm a <span class="typing"></span></div>
-                <a href="https://www.youtube.com/Bhairus" target="_blank" rel="noopener noreferrer">Watch me</a>
+                <a href="https://www.youtube.com/@Bhairus" target="_blank" rel="noopener noreferrer" aria-label="Watch me on YouTube">
+                    <i class="fab fa-youtube" aria-hidden="true"></i> Watch me
+                </a>
             </div>
           </div>
       </div>
+      <a href="#about" class="scroll-indicator" aria-label="Scroll down to About section">
+          <span>Scroll</span>
+          <span class="mouse" aria-hidden="true"></span>
+      </a>
+    </section>
+
+<!-- OneDE section start -->
+    <section class="onede-section reveal" id="onede">
+        <div class="max-width">
+            <h2 class="title">🎓 OneDE - Data Engineering Education Platform</h2>
+            <div class="onede-content">
+                <div class="onede-text">
+                    <h3>Building the Future of Data Engineering Learning</h3>
+                    <p>
+                        OneDE is my passion project — a comprehensive platform designed to help aspiring and practicing data engineers master the skills that matter. 
+                        From foundational concepts to advanced cloud architectures, OneDE breaks down complex data engineering topics into clear, actionable learning paths.
+                    </p>
+                    <p>
+                        Born from my own journey through the data engineering landscape, OneDE focuses on real-world skills: Azure data pipelines, 
+                        PySpark transformations, SQL optimization, system design, and the technical depth needed to build production-grade data systems.
+                    </p>
+                    <div class="onede-features">
+                        <div class="feature-item">
+                            <i class="fas fa-code"></i>
+                            <span>Hands-on Projects</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Structured Learning</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-cloud"></i>
+                            <span>Cloud-Native Focus</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-rocket"></i>
+                            <span>Career-Ready Skills</span>
+                        </div>
+                    </div>
+                    <a href="https://onede.bhairus.com/" target="_blank" rel="noopener noreferrer" class="onede-btn">
+                        Explore OneDE <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+                <div class="onede-visual">
+                    <div class="onede-card">
+                        <i class="fas fa-database"></i>
+                        <h4>Master Data Engineering</h4>
+                        <p>Learn by building real data pipelines, not just watching tutorials</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
 <!-- about section start -->
-    <section class="about" id="about">
+    <section class="about reveal" id="about">
         <div class="max-width">
             <h2 class="title">Welcome to Bhairus – where curiosity meets creation 💘</h2>
             <div class="about-content">
@@ -80,12 +176,11 @@
                 </div>
                 <div class="column right">
                     <div class="text">I'm Mahamudur and I'm a <span class="typing-2"></span></div>
-                    <p> I am a passionate Data Engineer and travel content creator based in Budapest.With over 4 years of experience in building robust data pipelines and scalable data systems,I specialize in tools and platforms like Azure Data Factory, Apache Spark, Hadoop, Hive, Unix, and Python.
+                    <p>I'm a Senior Data Engineer at Tata Consultancy Services, currently on onsite deputation in Budapest, Hungary, supporting Becton Dickinson (BD), a global healthcare leader. With 4.5 years of experience, I specialize in building scalable, production-grade data pipelines using Azure (ADF, ADLS, Databricks, HDInsight, Synapse), PySpark, SQL, and IBM DataStage.
 
-Beyond tech,I run Bhairus, a growing YouTube channel where I share travel vlogs, tech insights, finance tips, and educational content in Hinglish. My goal is to inspire learning and exploration – whether through a scenic vlog in the old Baku or a deep dive into modern data architecture.
+Beyond engineering, I'm building OneDE — a data engineering education platform at onede.bhairus.com — to share real-world knowledge and career strategies. I also run two YouTube channels: "Desh Bideshe Raja" for Bengali travel vlogs exploring Europe and Asia, and "Bhairus" for data engineering tutorials and EU career insights.
 
-This platform brings together everything I love – from engineering powerful data solutions to exploring the world and helping others grow. Let’s build, learn, and travel together.
-
+This platform brings together my passions: engineering robust data systems, exploring the world, and helping others grow. Whether through a technical deep dive or a scenic travel vlog, my goal is to inspire learning and curiosity.
 </p>
                 <a href="https://www.linkedin.com/in/bhairus/" target="_blank" rel="noopener noreferrer">My linkedin</a>
                 </div>
@@ -95,7 +190,7 @@ This platform brings together everything I love – from engineering powerful da
 
 <!-- about Travel start -->
 
-<section class="travel" id="travel">
+<section class="travel reveal" id="travel">
   <div class="max-width">
     <h2 class="title">🌍 My Travel</h2>
     <p class="subtitle">
@@ -173,24 +268,26 @@ This platform brings together everything I love – from engineering powerful da
 
 
 <!-- Featured YouTube Videos Section -->
-<section class="youtube" id="youtube">
+<section class="youtube reveal" id="youtube">
   <div class="max-width">
     <h2 class="title">🎥 Featured YouTube Videos</h2>
 
     <div class="iframes-container">
-      <iframe src="https://www.youtube.com/embed/luxQ3_8WYuY?si=pt8SzKQ-I41RRyLh" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/uAx6IPLhCSI?si=EwtNU8i4zUf97lTr" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/IcQXB3ri7DA?si=D_TINcZiCuM9D-OZ" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-      <iframe src="https://www.youtube.com/embed/WYFHptaAJq4?si=1kXuLmG2Dyfqhj0R" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-	  <iframe src="https://www.youtube.com/embed/DUGhgwdxRqs?si=lTBm25ko72jblmDn" title="YouTube video player" frameborder="0"  allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/luxQ3_8WYuY?si=pt8SzKQ-I41RRyLh" title="Bhairus YouTube video 1" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/uAx6IPLhCSI?si=EwtNU8i4zUf97lTr" title="Bhairus YouTube video 2" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/IcQXB3ri7DA?si=D_TINcZiCuM9D-OZ" title="Bhairus YouTube video 3" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/WYFHptaAJq4?si=1kXuLmG2Dyfqhj0R" title="Bhairus YouTube video 4" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/DUGhgwdxRqs?si=lTBm25ko72jblmDn" title="Bhairus YouTube video 5" frameborder="0" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <a href="https://www.youtube.com/@Bhairus" target="_blank" rel="noopener noreferrer">Visit Full Channel ➡️</a>
+    <a href="https://www.youtube.com/@Bhairus" target="_blank" rel="noopener noreferrer">
+      <i class="fab fa-youtube" aria-hidden="true"></i> Visit Full Channel
+    </a>
   </div>
 </section>
 
 <!-- skills section start -->
-<section class="skills-education" id="skills">
+<section class="skills-education reveal" id="skills">
   <div class="max-width">
     <h2 class="title">My Skills</h2>
 
@@ -236,7 +333,7 @@ This platform brings together everything I love – from engineering powerful da
 
 
 <!-- contact section start -->
-    <section class="contact" id="contact">
+    <section class="contact reveal" id="contact">
         <div class="max-width">
             <h2 class="title">Contact me</h2>
             <div class="contact-content">
@@ -255,7 +352,7 @@ This platform brings together everything I love – from engineering powerful da
                             <i class="fas fa-map-marker-alt"></i>
                             <div class="info">
                                 <div class="head">Address</div>
-                                <div class="sub-title">Kolkata,West Bengal</div>
+                                <div class="sub-title">Budapest, Hungary</div>
                             </div>
                         </div>
                         <div class="row">
@@ -264,6 +361,23 @@ This platform brings together everything I love – from engineering powerful da
                                 <div class="head">Email</div>
                                 <div class="sub-title">mahamudu786@gmail.com</div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="contact-social-wrap">
+                        <div class="contact-social-label">Social</div>
+                        <div class="contact-social" aria-label="Social media links">
+                            <a href="https://www.instagram.com/bayek_bhai/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fab fa-instagram" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.facebook.com/warning786" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/bhairus/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                            </a>
+                            <a href="https://github.com/mahamudur786" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <i class="fab fa-github" aria-hidden="true"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -293,9 +407,11 @@ This platform brings together everything I love – from engineering powerful da
         </div>
     </section>
 
+    </main>
+
     <!-- footer section start -->
     <footer>
-        <span>Created By <a href="https://www.linkedin.com/in/bhairus/" target="_blank" rel="noopener noreferrer">Mahamudur Rahaman</a> | <span class="far fa-copyright"></span> 2025 All rights reserved.</span>
+        <span>Created By <a href="https://www.linkedin.com/in/bhairus/" target="_blank" rel="noopener noreferrer">Mahamudur Rahaman</a> | <span class="far fa-copyright"></span> 2026 All rights reserved.</span>
     </footer>
 
     <!-- Structured Data (JSON-LD) for SEO -->
@@ -321,9 +437,8 @@ This platform brings together everything I love – from engineering powerful da
       ],
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Kolkata",
-        "addressRegion": "West Bengal",
-        "addressCountry": "IN"
+        "addressLocality": "Budapest",
+        "addressCountry": "HU"
       },
       "email": "mahamudu786@gmail.com",
       "description": "Data Engineer and travel content creator sharing tech insights, travel vlogs, and educational content."
