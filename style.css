@@ -149,7 +149,7 @@ section:first-of-type{
     padding: 0 80px;
     margin: auto;
 }
-.about, .travel, .youtube, .skills, .teams, .contact, .blogs-section, .onede-section, footer{
+.about, .travel, .youtube, .skills, .teams, .contact, .blogs-section, .onede-section, .vlogs, footer{
     font-family: 'Poppins', sans-serif;
 }
 .about .about-content,
@@ -556,11 +556,11 @@ section .title::after{
     transform: translateY(-2px);
     box-shadow: 0 10px 24px rgba(220, 20, 60, 0.18);
 }
-.about .about-content .right a::after{
-    content: "\f08e";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    font-size: 14px;
+.about .about-content .right a:hover i{
+    color: crimson;
+}
+.about .about-content .right a i{
+    font-size: 18px;
 }
 
 /* skills section styling-----------------------------------------------------------------------------------------> */
@@ -2136,6 +2136,217 @@ footer span a:hover{
     bottom: -12px;
   }
   .onede-section .title {
+    padding-bottom: 34px;
+  }
+}
+
+/* Desh Bideshe Raja — vlog channel section -----------------------------------------> */
+.vlogs{
+  background: linear-gradient(180deg, #fff 0%, #fff5f6 100%);
+  padding: 80px 20px;
+  color: #222;
+  text-align: center;
+}
+
+.vlogs .title{
+  color: #000;
+}
+
+.vlogs .title::after{
+  content: "Bangla. Bideshe. Stories.";
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+.vlogs .subtitle{
+  font-size: 1.15rem;
+  color: #444;
+  max-width: 720px;
+  margin: 0 auto 50px;
+  line-height: 1.6;
+}
+
+.vlogs-content{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  max-width: 1150px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.vlogs-text{
+  flex: 1 1 420px;
+  max-width: 520px;
+}
+
+.vlogs-text h3{
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.vlogs-text p{
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #333;
+  margin-bottom: 22px;
+  text-align: justify;
+}
+
+.vlogs-highlights{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+.vlogs-highlights li{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-left: 4px solid crimson;
+  border-radius: 8px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+  font-size: 0.98rem;
+  color: #333;
+  transition: transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+.vlogs-highlights li:hover{
+  transform: translateX(3px);
+  box-shadow: 0 6px 16px rgba(220, 20, 60, 0.12);
+}
+
+.vlogs-highlights li i{
+  color: crimson;
+  font-size: 1.1rem;
+  width: 22px;
+  text-align: center;
+}
+
+.vlogs-btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: crimson;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: 2px solid crimson;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.32);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+}
+
+.vlogs-btn:hover{
+  background: #fff;
+  color: crimson;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(220, 20, 60, 0.42);
+}
+
+.vlogs-video{
+  flex: 1 1 480px;
+  max-width: 600px;
+}
+
+.vlogs-iframe-wrap{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 14px 40px rgba(220, 20, 60, 0.18), 0 0 0 4px #fff, 0 0 0 6px rgba(220, 20, 60, 0.18);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.vlogs-iframe-wrap:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(220, 20, 60, 0.28), 0 0 0 4px #fff, 0 0 0 6px rgba(220, 20, 60, 0.32);
+}
+
+/* Aspect-ratio fallback for older browsers */
+@supports not (aspect-ratio: 16 / 9){
+  .vlogs-iframe-wrap{
+    padding-top: 56.25%;
+    height: 0;
+  }
+}
+
+.vlogs-iframe-wrap iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.vlogs-caption{
+  margin-top: 14px;
+  font-size: 0.92rem;
+  color: #666;
+  text-align: center;
+  font-style: italic;
+}
+
+/* YouTube section subtitle (added for clarity between the two channels) */
+.youtube .yt-subtitle{
+  font-size: 1.05rem;
+  color: #555;
+  max-width: 680px;
+  margin: -10px auto 30px;
+  line-height: 1.6;
+}
+
+/* Responsive — vlogs */
+@media screen and (max-width: 947px){
+  .vlogs-content{
+    flex-direction: column;
+    text-align: center;
+  }
+  .vlogs-text{
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+  .vlogs-text p{
+    text-align: justify;
+  }
+  .vlogs-video{
+    flex: 1 1 100%;
+    max-width: 100%;
+    order: -1;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .vlogs{
+    padding: 60px 16px;
+  }
+  .vlogs-text h3{
+    font-size: 1.4rem;
+  }
+  .vlogs-highlights li{
+    font-size: 0.92rem;
+  }
+}
+
+@media screen and (max-width: 480px){
+  .vlogs .title::after{
+    font-size: 14px;
+    bottom: -12px;
+  }
+  .vlogs .title{
     padding-bottom: 34px;
   }
 }

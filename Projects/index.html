@@ -43,28 +43,69 @@
     <div class="max-width">
       <h2 class="title">💼 My Projects</h2>
       <p class="subtitle">
-        Real-world data engineering projects showcasing end-to-end pipeline design, cloud architecture, and scalable solutions.
+        Real-world data engineering projects spanning enterprise RAG/LLM pipelines, real-time streaming on Kafka + AWS, and containerized PySpark workflows.
       </p>
 
       <div class="projects-container">
-        <!-- Project 1: Stock Market Pipeline -->
+        <!-- Project 1: Enterprise RAG System -->
         <article class="project-card">
           <div class="project-header">
-            <h3 class="project-title">Real-Time Stock Market Data Pipeline with Kafka & AWS</h3>
-            <span class="project-role">Role: Data Engineer</span>
+            <h3 class="project-title">Enterprise RAG System — Generative AI Capstone</h3>
+            <span class="project-role">Role: Data &amp; AI Engineer · 2025</span>
           </div>
-          
+
           <p class="project-description">
-            Designed and implemented an end-to-end real-time data engineering pipeline to simulate stock market data ingestion, processing, and querying in a production-like cloud environment.
+            Designed an end-to-end Retrieval-Augmented Generation (RAG) pipeline for regulated enterprise use cases, covering document ingestion, embedding generation, vector indexing, semantic retrieval, and LLM response orchestration.
           </p>
 
           <div class="project-section">
-            <h4>Architecture & Workflow</h4>
+            <h4>Architecture &amp; Workflow</h4>
+            <ul>
+              <li>Document ingestion and chunking pipeline with embedding generation</li>
+              <li>Vector indexing and semantic retrieval for grounded LLM responses</li>
+              <li>Governance guardrails and deterministic escalation logic for compliance</li>
+              <li>Streamlit-based evaluation interface for prompt/response review</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>What This Demonstrates</h4>
+            <ul>
+              <li>End-to-end LLM pipeline design with retrieval grounding</li>
+              <li>Awareness of governance and risk controls in regulated environments</li>
+              <li>Practical evaluation tooling for non-deterministic systems</li>
+            </ul>
+          </div>
+
+          <div class="project-tech">
+            <strong>Tech Stack:</strong> Python, LLMs, Vector Embeddings, Semantic Search, Streamlit
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/mahamudur786" target="_blank" rel="noopener noreferrer" class="project-link">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Real-Time Streaming Data Pipeline -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Real-Time Streaming Data Pipeline — Kafka + AWS</h3>
+            <span class="project-role">Role: Data Engineer · 2024</span>
+          </div>
+
+          <p class="project-description">
+            Built a streaming ingestion pipeline using Apache Kafka (producer/consumer architecture) for near-real-time event processing, with an S3 data lake, AWS Glue catalog, and SQL analytics via Amazon Athena.
+          </p>
+
+          <div class="project-section">
+            <h4>Architecture &amp; Workflow</h4>
             <ul>
               <li>Real-time data ingestion using Kafka producers and consumers built in Python</li>
               <li>Kafka infrastructure hosted on AWS EC2</li>
               <li>Streaming data persisted in Amazon S3 as a scalable data lake</li>
-              <li>Schema discovery and management using AWS Glue Crawler & Data Catalog</li>
+              <li>Schema discovery and management using AWS Glue Crawler &amp; Data Catalog</li>
               <li>Analytical querying performed with Amazon Athena using SQL</li>
             </ul>
           </div>
@@ -85,6 +126,46 @@
 
           <div class="project-links">
             <a href="https://github.com/mahamudur786/Stock_market_real_time_Data_processing" target="_blank" rel="noopener noreferrer" class="project-link">
+              <i class="fab fa-github"></i> View on GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Containerized PySpark Dev Environment -->
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-title">Containerized PySpark Development Environment — Docker</h3>
+            <span class="project-role">Role: Data Engineer · 2026</span>
+          </div>
+
+          <p class="project-description">
+            Built a production-grade local PySpark environment using Docker, resolving real Python version mismatches and container dependency ordering issues — demonstrating hands-on containerization experience for data engineering workflows.
+          </p>
+
+          <div class="project-section">
+            <h4>Architecture &amp; Workflow</h4>
+            <ul>
+              <li>Multi-container Docker setup for PySpark + Jupyter + supporting services</li>
+              <li>Pinned Python and Spark versions resolving runtime compatibility conflicts</li>
+              <li>Reproducible local environment for PySpark development and testing</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <h4>What This Demonstrates</h4>
+            <ul>
+              <li>Practical containerization of distributed data tooling</li>
+              <li>Debugging runtime/version conflicts in Spark ecosystems</li>
+              <li>Reproducible engineering workflows that mirror production setups</li>
+            </ul>
+          </div>
+
+          <div class="project-tech">
+            <strong>Tech Stack:</strong> Docker, PySpark, Python, Jupyter, Shell
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/mahamudur786" target="_blank" rel="noopener noreferrer" class="project-link">
               <i class="fab fa-github"></i> View on GitHub
             </a>
           </div>

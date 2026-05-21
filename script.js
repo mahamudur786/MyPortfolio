@@ -118,7 +118,7 @@ $(document).ready(function(){
     if (window.Typed) {
         if ($(".typing").length) {
             new Typed(".typing", {
-                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                strings: ["Data Engineer", "Pipeline Engineer", "Migration Lead", "Cloud Data Engineer", "YouTuber", "Traveler"],
                 typeSpeed: 100,
                 backSpeed: 60,
                 loop: true
@@ -126,7 +126,7 @@ $(document).ready(function(){
         }
         if ($(".typing-2").length) {
             new Typed(".typing-2", {
-                strings: ["YouTuber", "Data Engineer", "Traveler", "Blogger", "Finance Learner", "Math Enthusiast"],
+                strings: ["Data Engineer", "Pipeline Engineer", "Migration Lead", "Cloud Data Engineer", "YouTuber", "Traveler"],
                 typeSpeed: 100,
                 backSpeed: 60,
                 loop: true
